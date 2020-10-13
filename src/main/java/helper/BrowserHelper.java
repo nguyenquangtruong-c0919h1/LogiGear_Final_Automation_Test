@@ -41,6 +41,6 @@ public class BrowserHelper {
 
     public static void closeDriver() {
         if (driver != null)
-            driver.quit();
+            driver.close();
     }
 }

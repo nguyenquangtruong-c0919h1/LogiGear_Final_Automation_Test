@@ -12,6 +12,7 @@ public class Log {
     public static void info(String string) {
         logger.info("->" + string);
     }
+
     public static void error(String string) {
         logger.error("->" + string);
     }

@@ -18,8 +18,8 @@ public class BaseTest {
         BrowserHelper.navigateToUrl(Constants.URL);
     }
 
-//    @AfterMethod
-//    public void setupAfterMethod() {
-//        BrowserHelper.closeDriver();
-//    }
+    @AfterMethod
+    public void setupAfterMethod() {
+        BrowserHelper.closeDriver();
+    }
 }
