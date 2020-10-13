@@ -39,7 +39,7 @@ public class BrowserHelper {
         return driver;
     }
 
-    public static void closeWebDriver() {
+    public static void closeDriver() {
         if (driver != null)
             driver.quit();
     }
