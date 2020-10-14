@@ -25,7 +25,7 @@ public class ArticleTest extends BaseTest {
         Log.info("Step 1: Select Content > Article");
         articlePage.selectMenuTab(CommonPage.MenuTab.CONTENT, CommonPage.ListInMenuTab.ARTICLES);
 
-        Log.info("Step 2: Click New butotn");
+        Log.info("Step 2: Click New button");
         articlePage.clickNewButton();
 
         Log.info("Step 3: Fill data title form");
@@ -46,10 +46,10 @@ public class ArticleTest extends BaseTest {
         articlePage.clickSaveAndCloseButton();
 
         Assert.assertEquals(articlePage.getTextAlertMessage(), Constants.MESSAGE_ARTICLE_SAVED, "Save failed");
-        Assert.assertEquals(articlePage.getTitleTable(0), Constants.TEXT_TITLE_FORM, "Failed, Article is not displayed");
+        Assert.assertEquals(articlePage.getTitleTable(), Constants.TEXT_TITLE_FORM, "Failed, Article is not displayed");
 
         Log.info("Step 8: Click Article Checkbox");
-        articlePage.clickArticleCheckbox();
+        articlePage.clickCheckbox(Constants.ZERO);
 
         Log.info("Step 9: Click Trash button");
         articlePage.clickTrashButton();
@@ -63,7 +63,7 @@ public class ArticleTest extends BaseTest {
         articlePage.clickListDropDown("- Select Status -");
         articlePage.clickItemListDropDown("Trashed");
 
-        Assert.assertEquals(articlePage.getTitleTable(Constants.ZERO), Constants.TEXT_TITLE_FORM, "Trash Failed");
+        Assert.assertEquals(articlePage.getTitleTable(), Constants.TEXT_TITLE_FORM, "Trash Failed");
 
     }
 
@@ -89,7 +89,7 @@ public class ArticleTest extends BaseTest {
         articlePage.clickSaveAndCloseButton();
 
         Assert.assertEquals(articlePage.getTextAlertMessage(), Constants.MESSAGE_ARTICLE_SAVED, "Save failed");
-        Assert.assertEquals(articlePage.getTitleTable(Constants.ZERO), Constants.TEXT_ARTICLE_ORDER_ONE_TITLE_FORM, "Failed, Article is not displayed");
+        Assert.assertEquals(articlePage.getTitleTable(), Constants.TEXT_ARTICLE_ORDER_ONE_TITLE_FORM, "Failed, Article is not displayed");
 
         Log.info("Step 7: Select Content > Article");
         articlePage.selectMenuTab(CommonPage.MenuTab.CONTENT, CommonPage.ListInMenuTab.ARTICLES);
@@ -111,8 +111,15 @@ public class ArticleTest extends BaseTest {
         articlePage.clickSaveAndCloseButton();
 
         Assert.assertEquals(articlePage.getTextAlertMessage(), Constants.MESSAGE_ARTICLE_SAVED, "Save failed");
-        Assert.assertEquals(articlePage.getTitleTable(Constants.ZERO), Constants.TEXT_ARTICLE_ORDER_TWO_TITLE_FORM, "Failed, Article is not displayed");
+        Assert.assertEquals(articlePage.getTitleTable(), Constants.TEXT_ARTICLE_ORDER_TWO_TITLE_FORM, "Failed, Article is not displayed");
 
+        Log.info("Step 13: Click Article Checkbox");
+        articlePage.clickCheckbox(Constants.ONE);
+
+        Log.info("Step 14: Click Order Column");
+        articlePage.clickOrderColumn();
+
+        Assert.assertFalse(articlePage.checkEqualTitleTable(Constants.TEXT_ARTICLE_ORDER_ONE_TITLE_FORM), "Soft failed");
     }
 
 }

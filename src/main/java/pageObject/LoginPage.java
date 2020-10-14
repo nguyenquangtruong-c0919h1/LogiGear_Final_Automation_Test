@@ -21,12 +21,20 @@ public class LoginPage extends CommonPage {
         return BrowserHelper.getWebDriver().findElement(loginButton);
     }
 
+    /***
+     * Function fill data in login and Login
+     * @param userName
+     * @param password
+     */
     public void login(String userName, String password) {
         getUserName().sendKeys(userName);
         getPassword().sendKeys(password);
         clickLoginButton();
     }
 
+    /***
+     * Function click login
+     */
     public void clickLoginButton() {
         getLoginButton().click();
     }

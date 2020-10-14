@@ -2,67 +2,273 @@ package pageObject;
 
 import helper.BrowserHelper;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import utilities.Log;
 
 public class CommonPage {
+    private By orderColumn = By.cssSelector("table.table span.icon-menu-2");
+    private By searchToolButton = By.xpath("//div[@class='btn-wrapper hidden-phone']/button");
+    private By trashButton = By.id("toolbar-trash");
+    private By alertMessage = By.cssSelector("div.alert.alert-success>div.alert-message");
+    private By saveAndCloseButton = By.cssSelector("#toolbar-save button");
     private By contentTab = By.xpath("//a[@class='dropdown-toggle' and contains(text(),'Content')]");
     private By systemTab = By.xpath("//a[@class='dropdown-toggle' and contains(text(),'System')]");
+    private By componentsTab = By.xpath("//a[@class='dropdown-toggle' and contains(text(),'Components')]");
+    private By newButton = By.cssSelector("#toolbar-new>button");
+    private String listDropDown = "//span[text()='%s']";
+    private String itemListDropDown = "//li[text()='%s']";
+    private String checkbox = "//input[@id='cb%s']";
 
     //list element in content tab
     private By articleTabList = By.xpath("//a[@class='dropdown-toggle menu-article' and contains(text(),'Articles')]");
     private By categoriesTabList = By.xpath("//a[@class='dropdown-toggle menu-category' and text()='Categories']");
     private By featuredArticlesTabList = By.xpath("//a[@class='no-dropdown menu-featured' and text()='Featured Articles']");
     private By fieldsTabList = By.xpath("//a[@class='no-dropdown menu-fields' and text()='Fields']");
+    //List element in component tab
+    private By bannerList = By.xpath("//a[@class='dropdown-toggle menu-banners' and text()='Banners']");
+    private By contactsList = By.xpath("//a[@class='dropdown-toggle menu-contact' and text()='Contacts']");
+
+    private WebElement getOrderColumn() {
+        return BrowserHelper.getWebDriver().findElement(orderColumn);
+    }
+
+    private WebElement getSearchToolButton() {
+        return BrowserHelper.getWebDriver().findElement(searchToolButton);
+    }
+
+    private WebElement getTrashButton() {
+        return BrowserHelper.getWebDriver().findElement(trashButton);
+    }
+
+    private WebElement getCheckbox(int order) {
+        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(checkbox, order)));
+    }
+
+    private WebElement getAlertMessage() {
+        return BrowserHelper.getWebDriver().findElement(alertMessage);
+    }
+
+    private WebElement getSaveAndCloseButton() {
+        return BrowserHelper.getWebDriver().findElement(saveAndCloseButton);
+    }
 
     //Menu Tab
-    private WebElement getContentTab(){
+    private WebElement getContentTab() {
         return BrowserHelper.getWebDriver().findElement(contentTab);
     }
-    private WebElement getSystemTab(){
+
+    private WebElement getSystemTab() {
         return BrowserHelper.getWebDriver().findElement(systemTab);
     }
-     // List in Content Tab
-    private WebElement getArticleTabList(){return BrowserHelper.getWebDriver().findElement(articleTabList);}
-    private WebElement getCategoriesTabList(){return BrowserHelper.getWebDriver().findElement(categoriesTabList);}
-    private WebElement getFeatureArticlesTabList(){return BrowserHelper.getWebDriver().findElement(featuredArticlesTabList);}
-    private WebElement getFieldsTabList(){return BrowserHelper.getWebDriver().findElement(fieldsTabList);}
-    public enum MenuTab{
-        CONTENT,SYSTEM
-    }
-    public enum ListInMenuTab{
-        ARTICLES, CATEGORIES,FEATURED_ARTICLES,FIELDS
-    }
-    public void selectMenuTab(MenuTab menuTab,ListInMenuTab listInMenuTab){
-        switch (menuTab){
-            case CONTENT:
-                getContentTab().click();
-                selectDropDownContentTab(listInMenuTab);
-                break;
-            case SYSTEM:
-                getSystemTab().click();
 
-                break;
+    private WebElement getComponentsTab() {
+        return BrowserHelper.getWebDriver().findElement(componentsTab);
+    }
+
+    private WebElement getNewButton() {
+        return BrowserHelper.getWebDriver().findElement(newButton);
+    }
+
+    // List in Content Tab
+    private WebElement getArticleTabList() {
+        return BrowserHelper.getWebDriver().findElement(articleTabList);
+    }
+
+    private WebElement getCategoriesTabList() {
+        return BrowserHelper.getWebDriver().findElement(categoriesTabList);
+    }
+
+    private WebElement getFeatureArticlesTabList() {
+        return BrowserHelper.getWebDriver().findElement(featuredArticlesTabList);
+    }
+
+    private WebElement getFieldsTabList() {
+        return BrowserHelper.getWebDriver().findElement(fieldsTabList);
+    }
+
+    // List in Component tab
+    private WebElement getBannerList() {
+        return BrowserHelper.getWebDriver().findElement(bannerList);
+    }
+
+    private WebElement getContactsList() {
+        return BrowserHelper.getWebDriver().findElement(contactsList);
+    }
+
+    private WebElement getListDropDown(String nameText) {
+        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(listDropDown, nameText)));
+    }
+
+    private WebElement getItemListDropDown(String itemList) {
+        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(itemListDropDown, itemList)));
+    }
+
+    /***
+     * Menu tab on web
+     */
+    public enum MenuTab {
+        CONTENT, SYSTEM, COMPONENTS
+    }
+
+    /***
+     * list in menu tab
+     */
+    public enum ListInMenuTab {
+        ARTICLES, CATEGORIES, FEATURED_ARTICLES, FIELDS, BANNER, CONTACTS
+    }
+
+    /***
+     * Select Menu Tab
+     * @param menuTab
+     * @param listInMenuTab
+     */
+    public void selectMenuTab(MenuTab menuTab, ListInMenuTab listInMenuTab) {
+        try {
+            switch (menuTab) {
+                case CONTENT:
+                    getContentTab().click();
+                    selectDropDownContentTab(listInMenuTab);
+                    break;
+                case SYSTEM:
+                    getSystemTab().click();
+
+                    break;
+                case COMPONENTS:
+                    getComponentsTab().click();
+                    selectDropDownContactsTab(listInMenuTab);
+                    break;
+            }
+        } catch (NoSuchElementException e) {
+            Log.error("Can not find element in List Menu Tab " + e);
         }
     }
 
-    public void selectDropDownContentTab(ListInMenuTab listInMenuTab){
-        switch (listInMenuTab){
-            case ARTICLES:
-                getArticleTabList().click();
-                break;
-            case CATEGORIES:
-                getCategoriesTabList().click();
-                break;
-            case FEATURED_ARTICLES:
-                getFeatureArticlesTabList().click();
-                break;
-            case FIELDS:
-                getFieldsTabList().click();
-                break;
+    /***
+     * Select Dropdown Content Tab
+     * @param listInMenuTab
+     */
+    private void selectDropDownContentTab(ListInMenuTab listInMenuTab) {
+        try {
+            switch (listInMenuTab) {
+                case ARTICLES:
+                    getArticleTabList().click();
+                    break;
+                case CATEGORIES:
+                    getCategoriesTabList().click();
+                    break;
+                case FEATURED_ARTICLES:
+                    getFeatureArticlesTabList().click();
+                    break;
+                case FIELDS:
+                    getFieldsTabList().click();
+                    break;
+            }
+        } catch (NoSuchElementException e) {
+            Log.error("Can not find element in List Content Tab " + e);
         }
     }
 
-    public String getText(WebElement element){
+    /***
+     * Select Dropdown Contacts Tab
+     * @param listInMenuTab
+     */
+    private void selectDropDownContactsTab(ListInMenuTab listInMenuTab) {
+        try {
+            switch (listInMenuTab) {
+                case BANNER:
+                    getBannerList().click();
+                    break;
+                case CONTACTS:
+                    getContactsList().click();
+                    break;
+            }
+        } catch (NoSuchElementException e) {
+            Log.error("Can not find element in List Contact Tab " + e);
+        }
+    }
+    /***
+     * Get text
+     * @param element
+     * @return
+     */
+    public String getText(WebElement element) {
         return element.getText().trim();
     }
+
+    /***
+     * Function click New button for create article
+     */
+    public void clickNewButton() {
+        getNewButton().click();
+    }
+
+    /***
+     * Click list Dropdown
+     * @param nameText
+     */
+    public void clickListDropDown(String nameText) {
+        getListDropDown(nameText).click();
+    }
+
+    /***
+     * Function Click item List Dropdown
+     * @param itemListDropDown
+     */
+    public void clickItemListDropDown(String itemListDropDown) {
+        getItemListDropDown(itemListDropDown).click();
+    }
+
+
+    /***
+     * get Title web current
+     * @return
+     */
+    public static String getTitle() {
+        return BrowserHelper.getWebDriver().getTitle();
+    }
+
+    /***
+     * Function click Trash button
+     */
+    public void clickTrashButton() {
+        getTrashButton().click();
+    }
+
+    /***
+     * Function click Save and Close
+     */
+    public void clickSaveAndCloseButton() {
+        getSaveAndCloseButton().click();
+    }
+
+    /***
+     * Function get text alert message
+     * @return
+     */
+    public String getTextAlertMessage() {
+        return getText(getAlertMessage());
+    }
+
+    /***
+     * Function click Article Checkbox
+     */
+    public void clickCheckbox(int order) {
+        getCheckbox(order).click();
+    }
+
+    /***
+     * Function Click Search Tool Button
+     */
+    public void clickSearchToolButton() {
+        getSearchToolButton().click();
+    }
+
+    /***
+     * Function click order column
+     */
+    public void clickOrderColumn() {
+        getOrderColumn().click();
+    }
+
 }

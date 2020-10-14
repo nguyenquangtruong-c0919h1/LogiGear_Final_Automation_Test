@@ -13,6 +13,10 @@ public class BrowserHelper {
         CHROME, EDGE, FIREFOX
     }
 
+    /***
+     * Function start Browser
+     * @param typeWeb
+     */
     public static void startBrowser(TypeWeb typeWeb) {
         switch (typeWeb) {
             case CHROME:
@@ -31,16 +35,39 @@ public class BrowserHelper {
         driver.manage().window().maximize();
     }
 
+    /***
+     * Navigate To Url
+     * @param url
+     */
     public static void navigateToUrl(String url) {
         driver.get(url);
     }
 
+    /***
+     * get WebDriver
+     * @return
+     */
     public static WebDriver getWebDriver() {
         return driver;
     }
 
+    /***
+     * Close driver
+     */
     public static void closeDriver() {
         if (driver != null)
             driver.close();
     }
+    /***
+     * Get title Browser when having 2 browser
+     * @param title
+     * @return
+     */
+    public static boolean getTitleBrowser(String title) {
+        for (String winHandle : BrowserHelper.getWebDriver().getWindowHandles()) {
+            BrowserHelper.getWebDriver().switchTo().window(winHandle);
+        }
+        return BrowserHelper.getWebDriver().getTitle().equals(title);
+    }
+
 }

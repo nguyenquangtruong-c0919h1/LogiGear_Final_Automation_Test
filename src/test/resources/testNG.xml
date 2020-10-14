@@ -5,6 +5,7 @@
 <!--        <parameter name="browser" value="Chrome"/>-->
         <classes>
             <class name="ArticleTest"/>
+            <class name="ContactsTest"/>
         </classes>
     </test>
 

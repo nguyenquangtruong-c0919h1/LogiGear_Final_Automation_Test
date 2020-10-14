@@ -8,13 +8,9 @@ import utilities.Constants;
 
 public class BaseTest {
 
-    @BeforeTest
-    public void setupStartTest() {
-        BrowserHelper.startBrowser(BrowserHelper.TypeWeb.CHROME);
-    }
-
     @BeforeMethod
     public void setupStartMethod() {
+        BrowserHelper.startBrowser(BrowserHelper.TypeWeb.CHROME);
         BrowserHelper.navigateToUrl(Constants.URL);
     }
 
