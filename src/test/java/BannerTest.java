@@ -52,7 +52,6 @@ public class BannerTest extends BaseTest {
         Log.info("Step 5: Click Save and Close");
         bannerPage.clickSaveAndCloseButton();
 
-        Assert.assertEquals(bannerPage.getTextAlertMessage(), Constants.MESSAGE_CLIENT_SAVED, "Save failed");
 
         Log.info("Step 6: Click Categories Nav ");
         bannerPage.clickNavBar("Categories");

@@ -48,8 +48,7 @@ public class ContactsTest extends BaseTest {
         Assert.assertEquals(contactsPage.getTextAlertMessage(), Constants.MESSAGE_CONTACTS_SAVED, "Save failed");
 
         Log.info("Step 7: Click Sort Order");
-        contactsPage.clickSortOrder();
-        contactsPage.clickAllOrder();
+        contactsPage.clickSortOrderAll();
 
         Assert.assertTrue(contactsPage.getTitleTableIsDisplayed(textForTitle), "Failed, Contact is not displayed");
 
@@ -99,8 +98,7 @@ public class ContactsTest extends BaseTest {
         Assert.assertEquals(contactsPage.getTextAlertMessage(), Constants.MESSAGE_CONTACTS_SAVED, "Save failed");
 
         Log.info("Step 6: Click Sort Order");
-        contactsPage.clickSortOrder();
-        contactsPage.clickAllOrder();
+        contactsPage.clickSortOrderAll();
 
         Assert.assertTrue(contactsPage.getTitleTableIsDisplayed(textForTitle), "Failed, Contact is not displayed");
 
@@ -125,8 +123,7 @@ public class ContactsTest extends BaseTest {
         Assert.assertEquals(contactsPage.getTextAlertMessage(), Constants.MESSAGE_CONTACTS_SAVED, "Save failed");
 
         Log.info("Step 12: Click Sort Order");
-        contactsPage.clickSortOrder();
-        contactsPage.clickAllOrder();
+        contactsPage.clickSortOrderAll();
 
         Assert.assertTrue(contactsPage.getTitleTableIsDisplayed(textForTitle1), "Failed, Contact is not displayed");
 

@@ -6,8 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class ContactsPage extends CommonPage {
     private By formName = By.id("jform_name");
-    private By sortOrder = By.cssSelector("#list_limit_chzn span");
-    private By allOrder = By.xpath("//div[@id='list_limit_chzn']//li[text()='All']");
+
     private By idTable = By.xpath("//table[@id='contactList']//a[contains(text(),'ID')]");
     private String titleTable = "//div[@class='pull-left break-word']/a[text()='%s']";
 
@@ -23,13 +22,6 @@ public class ContactsPage extends CommonPage {
         return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(titleTable, text)));
     }
 
-    private WebElement getSortOrder() {
-        return BrowserHelper.getWebDriver().findElement(sortOrder);
-    }
-
-    private WebElement getAllOrder() {
-        return BrowserHelper.getWebDriver().findElement(allOrder);
-    }
 
     /***
      * Function fill data for Form Name
@@ -49,19 +41,6 @@ public class ContactsPage extends CommonPage {
         }
     }
 
-    /***
-     * Function Click Sort Order
-     */
-    public void clickSortOrder() {
-        getSortOrder().click();
-    }
-
-    /***
-     * Function click All in order
-     */
-    public void clickAllOrder() {
-        getAllOrder().click();
-    }
 
     /***\
      * Function get title table is displayed

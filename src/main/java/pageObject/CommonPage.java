@@ -7,9 +7,12 @@ import org.openqa.selenium.WebElement;
 import utilities.Log;
 
 public class CommonPage {
+    private By sortOrder = By.cssSelector("#list_limit_chzn span");
+    private By allOrder = By.xpath("//div[@id='list_limit_chzn']//li[text()='All']");
     private By orderColumn = By.cssSelector("table.table span.icon-menu-2");
     private By searchToolButton = By.xpath("//div[@class='btn-wrapper hidden-phone']/button");
     private By trashButton = By.id("toolbar-trash");
+    private By publishButton = By.id("toolbar-publish");
     private By alertMessage = By.cssSelector("div.alert.alert-success>div.alert-message");
     private By saveAndCloseButton = By.cssSelector("#toolbar-save button");
     private By contentTab = By.xpath("//a[@class='dropdown-toggle' and contains(text(),'Content')]");
@@ -28,6 +31,18 @@ public class CommonPage {
     //List element in component tab
     private By bannerList = By.xpath("//a[@class='dropdown-toggle menu-banners' and text()='Banners']");
     private By contactsList = By.xpath("//a[@class='dropdown-toggle menu-contact' and text()='Contacts']");
+
+    private WebElement getPublishButton() {
+        return BrowserHelper.getWebDriver().findElement(publishButton);
+    }
+
+    private WebElement getSortOrder() {
+        return BrowserHelper.getWebDriver().findElement(sortOrder);
+    }
+
+    private WebElement getAllOrder() {
+        return BrowserHelper.getWebDriver().findElement(allOrder);
+    }
 
     private WebElement getOrderColumn() {
         return BrowserHelper.getWebDriver().findElement(orderColumn);
@@ -187,6 +202,7 @@ public class CommonPage {
             Log.error("Can not find element in List Contact Tab " + e);
         }
     }
+
     /***
      * Get text
      * @param element
@@ -236,6 +252,13 @@ public class CommonPage {
     }
 
     /***
+     * Click Publish button
+     */
+    public void clickPublishButton() {
+        getPublishButton().click();
+    }
+
+    /***
      * Function click Save and Close
      */
     public void clickSaveAndCloseButton() {
@@ -269,6 +292,14 @@ public class CommonPage {
      */
     public void clickOrderColumn() {
         getOrderColumn().click();
+    }
+
+    /***
+     * Click sort Order and select All
+     */
+    public void clickSortOrderAll() {
+        getSortOrder().click();
+        getAllOrder().click();
     }
 
 }

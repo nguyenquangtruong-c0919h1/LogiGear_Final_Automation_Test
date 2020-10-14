@@ -9,12 +9,16 @@ public class Constants {
     public static int ONE = 1;
     public static String TITLE_PAGE = "Banners: New - SATTDN20.02 200914 - Administration";
 
+    /***
+     * Text element
+     */
+    public static String PUBLISHED = "Published";
+    public static String UNPUBLISHED = "Unpublished";
     //Text
     public static String TEXT_TITLE_FORM = "Test Article 1";
     public static String TEXT_ARTICLE_ORDER_ONE_TITLE_FORM = "Test Article Order 1";
     public static String TEXT_ARTICLE_ORDER_TWO_TITLE_FORM = "Test Article Order 2";
     public static String ARTICLE_CONTENT = "This is article content";
-    public static String TEXT_TITLE_CONTACT_FORM = "Test Contact 1";
     public static String TEXT_TITLE_HELP = "Joomla! Help Screens";
 
 
