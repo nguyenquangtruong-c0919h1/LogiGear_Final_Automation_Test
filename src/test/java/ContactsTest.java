@@ -36,10 +36,10 @@ public class ContactsTest extends BaseTest {
         contactsPage.fillDataFormName(textForTitle);
 
         Log.info("Step 4: Select Sample Data-Articles in Category");
-        contactsPage.clickListDropDownAndSelect("Sample Data-Contact","Sample Data-Contact");
+        contactsPage.clickListDropDownAndSelect("Sample Data-Contact", "Sample Data-Contact");
 
         Log.info("Step 5: Select Published in Status");
-        contactsPage.clickListDropDownAndSelect("Published","Published");
+        contactsPage.clickListDropDownAndSelect("Published", "Published");
 
         Log.info("Step 6: Click Save and Close button");
         contactsPage.clickSaveAndCloseButton();
@@ -66,7 +66,7 @@ public class ContactsTest extends BaseTest {
         contactsPage.clickSearchToolButton();
 
         Log.info("Step 12: Click Trashed in Status");
-        contactsPage.clickListDropDownAndSelect("- Select Status -","Trashed");
+        contactsPage.clickListDropDownAndSelect("- Select Status -", "Trashed");
 
         Assert.assertTrue(contactsPage.doesShowTitleTableContacts(textForTitle), "Trash Failed");
     }
@@ -87,7 +87,7 @@ public class ContactsTest extends BaseTest {
         contactsPage.fillDataFormName(textForTitleContact);
 
         Log.info("Step 4: Select Sample Data-Articles in Category");
-        contactsPage.clickListDropDownAndSelect("Sample Data-Contact","Sample Data-Contact");
+        contactsPage.clickListDropDownAndSelect("Sample Data-Contact", "Sample Data-Contact");
 
         Log.info("Step 5: Click Save and Close button");
         contactsPage.clickSaveAndCloseButton();
@@ -111,7 +111,7 @@ public class ContactsTest extends BaseTest {
         contactsPage.fillDataFormName(textForTitleContactTwo);
 
         Log.info("Step 10: Select Sample Data-Articles in Category");
-        contactsPage.clickListDropDownAndSelect("Sample Data-Contact","Sample Data-Contact");
+        contactsPage.clickListDropDownAndSelect("Sample Data-Contact", "Sample Data-Contact");
 
         Log.info("Step 11: Click Save and Close button");
         contactsPage.clickSaveAndCloseButton();

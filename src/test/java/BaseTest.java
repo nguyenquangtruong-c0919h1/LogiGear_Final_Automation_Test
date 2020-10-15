@@ -1,16 +1,15 @@
 import helper.BrowserHelper;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pageObject.LoginPage;
 import utilities.Constants;
 
 public class BaseTest {
 
     @BeforeMethod
-    public void setupStartMethod() {
-        BrowserHelper.startBrowser(BrowserHelper.TypeWeb.CHROME);
+    @Parameters("browser")
+    public void setupStartMethod(String browser) {
+        Constants.BROWSER = browser;
+        BrowserHelper.startBrowser(BrowserHelper.SelectBrowser.valueOf(Constants.BROWSER.toUpperCase()));
         BrowserHelper.navigateToUrl(Constants.URL);
     }
 

@@ -13,16 +13,17 @@ import javax.swing.*;
 
 public class BrowserHelper {
     static WebDriver driver;
-    public enum TypeWeb {
+
+    public enum SelectBrowser {
         CHROME, EDGE, FIREFOX
     }
 
     /***
      * Function start Browser
-     * @param typeWeb
+     * @param selectBrowser
      */
-    public static void startBrowser(TypeWeb typeWeb) {
-        switch (typeWeb) {
+    public static void startBrowser(SelectBrowser selectBrowser) {
+        switch (selectBrowser) {
             case CHROME:
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
@@ -60,21 +61,26 @@ public class BrowserHelper {
      */
     public static void closeDriver() {
         if (driver != null)
-            driver.close();
+            driver.quit();
     }
+
     /***
      * Get title Browser when having 2 browser
      * @param title
      * @return
      */
     public static boolean isShowTitleHelpBrowser(String title) {
-        for (String winHandle : BrowserHelper.getWebDriver().getWindowHandles()) {
-            BrowserHelper.getWebDriver().switchTo().window(winHandle);
+        for (String handle : BrowserHelper.getWebDriver().getWindowHandles()) {
+            BrowserHelper.getWebDriver().switchTo().window(handle);
         }
         return BrowserHelper.getWebDriver().getTitle().equals(title);
     }
 
-    public static void clickByJs(WebElement element){
+    /***
+     * Click ByJs
+     * @param element
+     */
+    public static void clickByJs(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", element);
     }

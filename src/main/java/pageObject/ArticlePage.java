@@ -8,13 +8,16 @@ public class ArticlePage extends CommonPage {
     private By formTitle = By.id("jform_title");
     private By articleText = By.id("jform_articletext_ifr");
     private String titleTable = "//td//a[@data-original-title='Edit' and contains(text(),'%s')]";
-//    private String checkboxArticle = "//td//a[@data-original-title='Edit' and contains(text(),'%s')]//..//..//../td/input[@type='checkbox']";
-    private WebElement getTotalTitleTable(String text) {
-        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(titleTable,text)));
+    private By titleSecond = By.xpath("//input[@id='cb1']//..//../td//a[@data-original-title='Edit']");
+
+    private WebElement getTitleTable(String title) {
+        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(titleTable, title)));
     }
-//    private WebElement getCheckboxArticle(String text) {
-//        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(checkboxArticle, text)));
-//    }
+
+    private WebElement getTitleSecond() {
+        return BrowserHelper.getWebDriver().findElement(titleSecond);
+    }
+
     private WebElement getTitleForm() {
         return BrowserHelper.getWebDriver().findElement(formTitle);
     }
@@ -23,9 +26,6 @@ public class ArticlePage extends CommonPage {
         return BrowserHelper.getWebDriver().findElement(articleText);
     }
 
-//    public void clickCheckboxArticle(String text) {
-//        getCheckboxArticle(text).click();
-//    }
     /***
      * Function fill data tile form
      * @param text
@@ -47,7 +47,7 @@ public class ArticlePage extends CommonPage {
      * @return
      */
     public Boolean doesShowTitleTableArticle(String text) {
-        return getTotalTitleTable(text).isDisplayed();
+        return getTitleTable(text).isDisplayed();
     }
 
     /***
@@ -56,6 +56,6 @@ public class ArticlePage extends CommonPage {
      * @return
      */
     public boolean compareTitleTable(String textTitle) {
-        return doesShowTitleTableArticle(textTitle);
+        return !getTitleSecond().getText().equals(textTitle);
     }
 }

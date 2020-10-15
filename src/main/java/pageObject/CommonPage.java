@@ -7,47 +7,71 @@ import org.openqa.selenium.WebElement;
 import utilities.Log;
 
 public class CommonPage {
+    //List element on ToolBar
+    private By toolbarHelp = By.id("toolbar-help");
+    private By publishButton = By.id("toolbar-publish");
+    private By trashButton = By.id("toolbar-trash");
+    private By checkInButton = By.id("toolbar-checkin");
+    //List element Search
     private By searchInput = By.id("filter_search");
     private By searchButton = By.cssSelector(".btn-wrapper.input-append>button[type=submit]");
+    private By searchToolButton = By.xpath("//div[@class='btn-wrapper hidden-phone']/button");
+    //List sort
     private By sortOrder = By.cssSelector("#list_limit_chzn span");
     private By allOrder = By.xpath("//div[@id='list_limit_chzn']//li[text()='All']");
     private By orderColumn = By.cssSelector("table.table span.icon-menu-2");
-    private By searchToolButton = By.xpath("//div[@class='btn-wrapper hidden-phone']/button");
-    private By trashButton = By.id("toolbar-trash");
-    private By publishButton = By.id("toolbar-publish");
-    private By checkInButton = By.id("toolbar-checkin");
+    //List element other
     private By alertMessage = By.cssSelector("div.alert.alert-success>div.alert-message");
     private By saveAndCloseButton = By.cssSelector("#toolbar-save button");
-    private By contentTab = By.xpath("//a[@class='dropdown-toggle' and contains(text(),'Content')]");
-    private By systemTab = By.xpath("//a[@class='dropdown-toggle' and contains(text(),'System')]");
-    private By componentsTab = By.xpath("//a[@class='dropdown-toggle' and contains(text(),'Components')]");
     private By newButton = By.cssSelector("#toolbar-new>button");
     private String listDropDown = "//span[contains(text(),'%s')]";
     private String itemListDropDown = "//li[contains(text(),'%s')]";
     private String checkBox = "//a[contains(text(),'')]//..//..//../td/input[@type='checkbox']";
-    //list element in content tab
+    //List element in menu header
+    private By contentTab = By.xpath("//a[@class='dropdown-toggle' and contains(text(),'Content')]");
+    private By systemTab = By.xpath("//a[@class='dropdown-toggle' and contains(text(),'System')]");
+    private By componentsTab = By.xpath("//a[@class='dropdown-toggle' and contains(text(),'Components')]");
+    //list element in content header
     private By articleTabList = By.xpath("//a[@class='dropdown-toggle menu-article' and contains(text(),'Articles')]");
     private By categoriesTabList = By.xpath("//a[@class='dropdown-toggle menu-category' and text()='Categories']");
     private By featuredArticlesTabList = By.xpath("//a[@class='no-dropdown menu-featured' and text()='Featured Articles']");
     private By fieldsTabList = By.xpath("//a[@class='no-dropdown menu-fields' and text()='Fields']");
-    //List element in component tab
+    //List element in component header
     private By bannerList = By.xpath("//a[@class='dropdown-toggle menu-banners' and text()='Banners']");
     private By contactsList = By.xpath("//a[@class='dropdown-toggle menu-contact' and text()='Contacts']");
+    private By webLinksList = By.xpath("//a[@class='dropdown-toggle menu-weblinks' and text()='Web Links']");
 
-    private WebElement getSearchInput(){
-        return BrowserHelper.getWebDriver().findElement(searchInput);
+    //List get element toolbar
+    private WebElement getToolbarHelp() {
+        return BrowserHelper.getWebDriver().findElement(toolbarHelp);
     }
-    private WebElement getSearchButton(){
-        return BrowserHelper.getWebDriver().findElement(searchButton);
-    }
-    private WebElement getCheckInButton(){return BrowserHelper.getWebDriver().findElement(checkInButton);}
-    private WebElement getCheckBox(String text){
-        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(checkBox,text)));
-    }
+
     private WebElement getPublishButton() {
         return BrowserHelper.getWebDriver().findElement(publishButton);
     }
 
+    private WebElement getTrashButton() {
+        return BrowserHelper.getWebDriver().findElement(trashButton);
+    }
+
+    private WebElement getCheckInButton() {
+        return BrowserHelper.getWebDriver().findElement(checkInButton);
+    }
+
+    //List get element search
+    private WebElement getSearchInput() {
+        return BrowserHelper.getWebDriver().findElement(searchInput);
+    }
+
+    private WebElement getSearchButton() {
+        return BrowserHelper.getWebDriver().findElement(searchButton);
+    }
+
+    private WebElement getSearchToolButton() {
+        return BrowserHelper.getWebDriver().findElement(searchToolButton);
+    }
+
+    //List get element sort
     private WebElement getSortOrder() {
         return BrowserHelper.getWebDriver().findElement(sortOrder);
     }
@@ -60,25 +84,7 @@ public class CommonPage {
         return BrowserHelper.getWebDriver().findElement(orderColumn);
     }
 
-    private WebElement getSearchToolButton() {
-        return BrowserHelper.getWebDriver().findElement(searchToolButton);
-    }
-
-    private WebElement getTrashButton() {
-        return BrowserHelper.getWebDriver().findElement(trashButton);
-    }
-
-
-
-    private WebElement getAlertMessage() {
-        return BrowserHelper.getWebDriver().findElement(alertMessage);
-    }
-
-    private WebElement getSaveAndCloseButton() {
-        return BrowserHelper.getWebDriver().findElement(saveAndCloseButton);
-    }
-
-    //Menu Tab
+    //List get element in menu header
     private WebElement getContentTab() {
         return BrowserHelper.getWebDriver().findElement(contentTab);
     }
@@ -91,8 +97,29 @@ public class CommonPage {
         return BrowserHelper.getWebDriver().findElement(componentsTab);
     }
 
+    //List get element other
+    private WebElement getAlertMessage() {
+        return BrowserHelper.getWebDriver().findElement(alertMessage);
+    }
+
+    private WebElement getSaveAndCloseButton() {
+        return BrowserHelper.getWebDriver().findElement(saveAndCloseButton);
+    }
+
     private WebElement getNewButton() {
         return BrowserHelper.getWebDriver().findElement(newButton);
+    }
+
+    private WebElement getListDropDown(String nameText) {
+        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(listDropDown, nameText)));
+    }
+
+    private WebElement getItemListDropDown(String itemList) {
+        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(itemListDropDown, itemList)));
+    }
+
+    private WebElement getCheckBox(String text) {
+        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(checkBox, text)));
     }
 
     // List in Content Tab
@@ -121,16 +148,12 @@ public class CommonPage {
         return BrowserHelper.getWebDriver().findElement(contactsList);
     }
 
-    private WebElement getListDropDown(String nameText) {
-        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(listDropDown, nameText)));
-    }
-
-    private WebElement getItemListDropDown(String itemList) {
-        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(itemListDropDown, itemList)));
+    private WebElement getWebLinksList() {
+        return BrowserHelper.getWebDriver().findElement(webLinksList);
     }
 
     /***
-     * Menu tab on web
+     * List menu tab on header
      */
     public enum MenuTab {
         CONTENT, SYSTEM, COMPONENTS
@@ -140,7 +163,7 @@ public class CommonPage {
      * list in menu tab
      */
     public enum ListInMenuTab {
-        ARTICLES, CATEGORIES, FEATURED_ARTICLES, FIELDS, BANNER, CONTACTS
+        ARTICLES, CATEGORIES, FEATURED_ARTICLES, FIELDS, BANNER, CONTACTS, WEB_LINKS
     }
 
     /***
@@ -161,7 +184,7 @@ public class CommonPage {
                     break;
                 case COMPONENTS:
                     getComponentsTab().click();
-                    selectDropDownContactsTab(listInMenuTab);
+                    selectDropDownComponentTab(listInMenuTab);
                     break;
             }
         } catch (NoSuchElementException e) {
@@ -198,7 +221,7 @@ public class CommonPage {
      * Select Dropdown Contacts Tab
      * @param listInMenuTab
      */
-    private void selectDropDownContactsTab(ListInMenuTab listInMenuTab) {
+    private void selectDropDownComponentTab(ListInMenuTab listInMenuTab) {
         try {
             switch (listInMenuTab) {
                 case BANNER:
@@ -207,6 +230,10 @@ public class CommonPage {
                 case CONTACTS:
                     getContactsList().click();
                     break;
+                case WEB_LINKS:
+                    getWebLinksList().click();
+                    break;
+
             }
         } catch (NoSuchElementException e) {
             Log.error("Can not find element in List Contact Tab " + e);
@@ -229,15 +256,36 @@ public class CommonPage {
         getNewButton().click();
     }
 
-    public void clickCheckInButton(){getCheckInButton().click();}
+    /***
+     * Function click ToolBar Help
+     */
+    public void clickToolbarHelp() {
+        getToolbarHelp().click();
+    }
 
-    public void clickListDropDownAndSelect(String listDropDown,String itemListDropDown) {
+    /***
+     * Function click check in button
+     */
+    public void clickCheckInButton() {
+        getCheckInButton().click();
+    }
+
+    /***
+     * Function click and select in dropdown
+     * @param listDropDown
+     * @param itemListDropDown
+     */
+    public void clickListDropDownAndSelect(String listDropDown, String itemListDropDown) {
         getListDropDown(listDropDown).click();
         getItemListDropDown(itemListDropDown).click();
 
     }
 
-    public void clickCheckBox(String text){
+    /***
+     * Function click checkbox
+     * @param text
+     */
+    public void clickCheckBox(String text) {
         getCheckBox(text).click();
     }
 
@@ -299,10 +347,19 @@ public class CommonPage {
         getSortOrder().click();
         getAllOrder().click();
     }
-    public void fillDataSearchInput(String text){
+
+    /***
+     * function fill data search input
+     * @param text
+     */
+    public void fillDataSearchInput(String text) {
         getSearchInput().sendKeys(text);
     }
-    public void clickSearchButton(){
+
+    /***
+     * function click search button
+     */
+    public void clickSearchButton() {
         getSearchButton().click();
     }
 

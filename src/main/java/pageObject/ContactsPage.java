@@ -6,17 +6,11 @@ import org.openqa.selenium.WebElement;
 
 public class ContactsPage extends CommonPage {
     private By formName = By.id("jform_name");
-
-    private By idTable = By.xpath("//table[@id='contactList']//a[contains(text(),'ID')]");
     private String titleTable = "//div[@class='pull-left break-word']/a[text()='%s']";
     private String checkBoxContacts = "//td//a[contains(text(),'%s')]//..//..//../td/input[@type='checkbox']";
 
-    private WebElement getCheckBoxContacts(String text){
-        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(checkBoxContacts,text)));
-    }
-
-    private WebElement getIdTable() {
-        return BrowserHelper.getWebDriver().findElement(idTable);
+    private WebElement getCheckBoxContacts(String text) {
+        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(checkBoxContacts, text)));
     }
 
     private WebElement getFormName() {
@@ -27,7 +21,11 @@ public class ContactsPage extends CommonPage {
         return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(titleTable, text)));
     }
 
-    public void clickCheckBoxContacts(String text){
+    /***
+     * Function click checkbox contacts
+     * @param text
+     */
+    public void clickCheckBoxContacts(String text) {
         BrowserHelper.clickByJs(getCheckBoxContacts(text));
     }
 
@@ -38,11 +36,6 @@ public class ContactsPage extends CommonPage {
     public void fillDataFormName(String text) {
         getFormName().sendKeys(text);
     }
-
-    /***
-     * Function click Id Table Several Times
-     * @param times
-     */
 
     /***\
      * Function get title table is displayed

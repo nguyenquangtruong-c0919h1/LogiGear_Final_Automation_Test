@@ -94,7 +94,7 @@ public class ClientsTest extends BaseTest {
         BrowserHelper.closeDriver();
 
         Log.info("Step 8: Start Browser");
-        BrowserHelper.startBrowser(BrowserHelper.TypeWeb.CHROME);
+        BrowserHelper.startBrowser(BrowserHelper.SelectBrowser.valueOf(Constants.BROWSER.toUpperCase()));
 
         Log.info("Step 9: Navigate login page");
         BrowserHelper.navigateToUrl(Constants.URL);

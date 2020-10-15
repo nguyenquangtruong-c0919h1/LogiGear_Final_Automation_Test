@@ -6,7 +6,7 @@ public class DataHelper {
     static Faker faker = new Faker();
 
     /***
-     * get Text
+     * get Text random
      * @return
      */
     public static String getTextRandom() {
@@ -14,7 +14,7 @@ public class DataHelper {
     }
 
     /***
-     * get Name
+     * get Name random
      * @return
      */
     public static String getNameRandom() {
@@ -22,10 +22,18 @@ public class DataHelper {
     }
 
     /***
-     * get Email
+     * get Email random
      * @return
      */
     public static String getEmailRandom() {
         return faker.internet().emailAddress();
+    }
+
+    /***
+     * get Url
+     * @return random
+     */
+    public static String getUrlRandom(){
+        return faker.internet().url();
     }
 }
