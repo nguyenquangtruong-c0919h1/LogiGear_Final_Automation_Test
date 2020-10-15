@@ -28,6 +28,7 @@ public class Constants {
     public static String MESSAGE_CONTACTS_SAVED = "Contact saved.";
     public static String MESSAGE_CONTACTS_TRASHED = "1 contact trashed.";
     public static String MESSAGE_CLIENT_SAVED = "Client saved.";
+    public static String MESSAGE_CLIENT_CHECK_IN = "1 client checked in.";
     public static String MESSAGE_CATEGORY_SAVED = "Category saved.";
 
     /***

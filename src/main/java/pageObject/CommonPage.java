@@ -7,22 +7,24 @@ import org.openqa.selenium.WebElement;
 import utilities.Log;
 
 public class CommonPage {
+    private By searchInput = By.id("filter_search");
+    private By searchButton = By.cssSelector(".btn-wrapper.input-append>button[type=submit]");
     private By sortOrder = By.cssSelector("#list_limit_chzn span");
     private By allOrder = By.xpath("//div[@id='list_limit_chzn']//li[text()='All']");
     private By orderColumn = By.cssSelector("table.table span.icon-menu-2");
     private By searchToolButton = By.xpath("//div[@class='btn-wrapper hidden-phone']/button");
     private By trashButton = By.id("toolbar-trash");
     private By publishButton = By.id("toolbar-publish");
+    private By checkInButton = By.id("toolbar-checkin");
     private By alertMessage = By.cssSelector("div.alert.alert-success>div.alert-message");
     private By saveAndCloseButton = By.cssSelector("#toolbar-save button");
     private By contentTab = By.xpath("//a[@class='dropdown-toggle' and contains(text(),'Content')]");
     private By systemTab = By.xpath("//a[@class='dropdown-toggle' and contains(text(),'System')]");
     private By componentsTab = By.xpath("//a[@class='dropdown-toggle' and contains(text(),'Components')]");
     private By newButton = By.cssSelector("#toolbar-new>button");
-    private String listDropDown = "//span[text()='%s']";
-    private String itemListDropDown = "//li[text()='%s']";
-    private String checkbox = "//input[@id='cb%s']";
-
+    private String listDropDown = "//span[contains(text(),'%s')]";
+    private String itemListDropDown = "//li[contains(text(),'%s')]";
+    private String checkBox = "//a[contains(text(),'')]//..//..//../td/input[@type='checkbox']";
     //list element in content tab
     private By articleTabList = By.xpath("//a[@class='dropdown-toggle menu-article' and contains(text(),'Articles')]");
     private By categoriesTabList = By.xpath("//a[@class='dropdown-toggle menu-category' and text()='Categories']");
@@ -32,6 +34,16 @@ public class CommonPage {
     private By bannerList = By.xpath("//a[@class='dropdown-toggle menu-banners' and text()='Banners']");
     private By contactsList = By.xpath("//a[@class='dropdown-toggle menu-contact' and text()='Contacts']");
 
+    private WebElement getSearchInput(){
+        return BrowserHelper.getWebDriver().findElement(searchInput);
+    }
+    private WebElement getSearchButton(){
+        return BrowserHelper.getWebDriver().findElement(searchButton);
+    }
+    private WebElement getCheckInButton(){return BrowserHelper.getWebDriver().findElement(checkInButton);}
+    private WebElement getCheckBox(String text){
+        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(checkBox,text)));
+    }
     private WebElement getPublishButton() {
         return BrowserHelper.getWebDriver().findElement(publishButton);
     }
@@ -56,9 +68,7 @@ public class CommonPage {
         return BrowserHelper.getWebDriver().findElement(trashButton);
     }
 
-    private WebElement getCheckbox(int order) {
-        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(checkbox, order)));
-    }
+
 
     private WebElement getAlertMessage() {
         return BrowserHelper.getWebDriver().findElement(alertMessage);
@@ -219,28 +229,23 @@ public class CommonPage {
         getNewButton().click();
     }
 
-    /***
-     * Click list Dropdown
-     * @param nameText
-     */
-    public void clickListDropDown(String nameText) {
-        getListDropDown(nameText).click();
-    }
+    public void clickCheckInButton(){getCheckInButton().click();}
 
-    /***
-     * Function Click item List Dropdown
-     * @param itemListDropDown
-     */
-    public void clickItemListDropDown(String itemListDropDown) {
+    public void clickListDropDownAndSelect(String listDropDown,String itemListDropDown) {
+        getListDropDown(listDropDown).click();
         getItemListDropDown(itemListDropDown).click();
+
     }
 
+    public void clickCheckBox(String text){
+        getCheckBox(text).click();
+    }
 
     /***
      * get Title web current
      * @return
      */
-    public static String getTitle() {
+    public String getTitle() {
         return BrowserHelper.getWebDriver().getTitle();
     }
 
@@ -274,13 +279,6 @@ public class CommonPage {
     }
 
     /***
-     * Function click Article Checkbox
-     */
-    public void clickCheckbox(int order) {
-        getCheckbox(order).click();
-    }
-
-    /***
      * Function Click Search Tool Button
      */
     public void clickSearchToolButton() {
@@ -300,6 +298,12 @@ public class CommonPage {
     public void clickSortOrderAll() {
         getSortOrder().click();
         getAllOrder().click();
+    }
+    public void fillDataSearchInput(String text){
+        getSearchInput().sendKeys(text);
+    }
+    public void clickSearchButton(){
+        getSearchButton().click();
     }
 
 }

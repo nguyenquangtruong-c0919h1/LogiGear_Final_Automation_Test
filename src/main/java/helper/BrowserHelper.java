@@ -1,14 +1,18 @@
 package helper;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import javax.swing.*;
 
 public class BrowserHelper {
     static WebDriver driver;
-
     public enum TypeWeb {
         CHROME, EDGE, FIREFOX
     }
@@ -63,11 +67,16 @@ public class BrowserHelper {
      * @param title
      * @return
      */
-    public static boolean getTitleBrowser(String title) {
+    public static boolean isShowTitleHelpBrowser(String title) {
         for (String winHandle : BrowserHelper.getWebDriver().getWindowHandles()) {
             BrowserHelper.getWebDriver().switchTo().window(winHandle);
         }
         return BrowserHelper.getWebDriver().getTitle().equals(title);
+    }
+
+    public static void clickByJs(WebElement element){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", element);
     }
 
 }

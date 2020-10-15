@@ -1,3 +1,4 @@
+import helper.BrowserHelper;
 import helper.DataHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -35,12 +36,10 @@ public class ContactsTest extends BaseTest {
         contactsPage.fillDataFormName(textForTitle);
 
         Log.info("Step 4: Select Sample Data-Articles in Category");
-        contactsPage.clickListDropDown("Sample Data-Contact");
-        contactsPage.clickItemListDropDown("Sample Data-Contact");
+        contactsPage.clickListDropDownAndSelect("Sample Data-Contact","Sample Data-Contact");
 
         Log.info("Step 5: Select Published in Status");
-        contactsPage.clickListDropDown("Published");
-        contactsPage.clickItemListDropDown("Published");
+        contactsPage.clickListDropDownAndSelect("Published","Published");
 
         Log.info("Step 6: Click Save and Close button");
         contactsPage.clickSaveAndCloseButton();
@@ -50,13 +49,13 @@ public class ContactsTest extends BaseTest {
         Log.info("Step 7: Click Sort Order");
         contactsPage.clickSortOrderAll();
 
-        Assert.assertTrue(contactsPage.getTitleTableIsDisplayed(textForTitle), "Failed, Contact is not displayed");
+        Assert.assertTrue(contactsPage.doesShowTitleTableContacts(textForTitle), "Failed, Contact is not displayed");
 
-        Log.info("Step 8: Click Id Table to sort");
-        contactsPage.clickIdTableSeveralTimes(2);
+//        Log.info("Step 8: Click Id Table to sort");
+//        contactsPage.clickIdTableSeveralTimes(2);
 
         Log.info("Step 9: Click checkbox Contacts first");
-        contactsPage.clickCheckbox(Constants.ZERO);
+        contactsPage.clickCheckBoxContacts(textForTitle);
 
         Log.info("Step 10: Click Trash button to delete contacts first");
         contactsPage.clickTrashButton();
@@ -67,10 +66,9 @@ public class ContactsTest extends BaseTest {
         contactsPage.clickSearchToolButton();
 
         Log.info("Step 12: Click Trashed in Status");
-        contactsPage.clickListDropDown("- Select Status -");
-        contactsPage.clickItemListDropDown("Trashed");
+        contactsPage.clickListDropDownAndSelect("- Select Status -","Trashed");
 
-        Assert.assertTrue(contactsPage.getTitleTableIsDisplayed(textForTitle), "Trash Failed");
+        Assert.assertTrue(contactsPage.doesShowTitleTableContacts(textForTitle), "Trash Failed");
     }
 
     @Test(description = "Verify user can change the order of contacts using the Ordering column")
@@ -83,14 +81,13 @@ public class ContactsTest extends BaseTest {
         Log.info("Step 2: Click New Button");
         contactsPage.clickNewButton();
 
-        String textForTitle = DataHelper.getTextRandom();
+        String textForTitleContact = DataHelper.getTextRandom();
 
         Log.info("Step 3: Fill data for contacts form");
-        contactsPage.fillDataFormName(textForTitle);
+        contactsPage.fillDataFormName(textForTitleContact);
 
         Log.info("Step 4: Select Sample Data-Articles in Category");
-        contactsPage.clickListDropDown("Sample Data-Contact");
-        contactsPage.clickItemListDropDown("Sample Data-Contact");
+        contactsPage.clickListDropDownAndSelect("Sample Data-Contact","Sample Data-Contact");
 
         Log.info("Step 5: Click Save and Close button");
         contactsPage.clickSaveAndCloseButton();
@@ -100,7 +97,7 @@ public class ContactsTest extends BaseTest {
         Log.info("Step 6: Click Sort Order");
         contactsPage.clickSortOrderAll();
 
-        Assert.assertTrue(contactsPage.getTitleTableIsDisplayed(textForTitle), "Failed, Contact is not displayed");
+        Assert.assertTrue(contactsPage.doesShowTitleTableContacts(textForTitleContact), "Failed, Contact is not displayed");
 
         Log.info("Step 7: Click Components --> Contacts");
         contactsPage.selectMenuTab(CommonPage.MenuTab.COMPONENTS, CommonPage.ListInMenuTab.CONTACTS);
@@ -108,14 +105,13 @@ public class ContactsTest extends BaseTest {
         Log.info("Step 8: Click New Button");
         contactsPage.clickNewButton();
 
-        String textForTitle1 = DataHelper.getTextRandom();
+        String textForTitleContactTwo = DataHelper.getTextRandom();
 
         Log.info("Step 9: Fill data for contacts form");
-        contactsPage.fillDataFormName(textForTitle1);
+        contactsPage.fillDataFormName(textForTitleContactTwo);
 
         Log.info("Step 10: Select Sample Data-Articles in Category");
-        contactsPage.clickListDropDown("Sample Data-Contact");
-        contactsPage.clickItemListDropDown("Sample Data-Contact");
+        contactsPage.clickListDropDownAndSelect("Sample Data-Contact","Sample Data-Contact");
 
         Log.info("Step 11: Click Save and Close button");
         contactsPage.clickSaveAndCloseButton();
@@ -125,15 +121,15 @@ public class ContactsTest extends BaseTest {
         Log.info("Step 12: Click Sort Order");
         contactsPage.clickSortOrderAll();
 
-        Assert.assertTrue(contactsPage.getTitleTableIsDisplayed(textForTitle1), "Failed, Contact is not displayed");
+        Assert.assertTrue(contactsPage.doesShowTitleTableContacts(textForTitleContactTwo), "Failed, Contact is not displayed");
 
         Log.info("Step 13: Click Article Checkbox");
-        contactsPage.clickCheckbox(Constants.ONE);
+        contactsPage.clickCheckBoxContacts(textForTitleContactTwo);
 
         Log.info("Step 14: Click Order Column");
         contactsPage.clickOrderColumn();
 
-        Assert.assertTrue(contactsPage.checkEqualTitleTable(textForTitle1), "Soft failed");
+        Assert.assertTrue(contactsPage.checkEqualTitleTable(textForTitleContactTwo), "Soft failed");
     }
 
 }

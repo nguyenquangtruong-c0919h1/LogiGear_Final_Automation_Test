@@ -6,6 +6,8 @@
         <classes>
             <class name="ArticleTest"/>
             <class name="ContactsTest"/>
+            <class name="BannerTest"/>
+            <class name="ClientsTest"/>
         </classes>
     </test>
 

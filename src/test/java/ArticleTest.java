@@ -1,3 +1,5 @@
+import helper.BrowserHelper;
+import helper.DataHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -32,12 +34,10 @@ public class ArticleTest extends BaseTest {
         articlePage.fillDataTitleForm(Constants.TEXT_TITLE_FORM);
 
         Log.info("Step 4: Select Published in Status");
-        articlePage.clickListDropDown("Published");
-        articlePage.clickItemListDropDown("Published");
+        articlePage.clickListDropDownAndSelect("Published","Published");
 
         Log.info("Step 5: Select Sample Data-Articles in Category");
-        articlePage.clickListDropDown("Sample Data-Articles");
-        articlePage.clickItemListDropDown("Sample Data-Articles");
+        articlePage.clickListDropDownAndSelect("Sample Data-Articles","Sample Data-Articles");
 
         Log.info("Step 6: Fill data Article Text");
         articlePage.fillDataArticleText(Constants.ARTICLE_CONTENT);
@@ -46,10 +46,10 @@ public class ArticleTest extends BaseTest {
         articlePage.clickSaveAndCloseButton();
 
         Assert.assertEquals(articlePage.getTextAlertMessage(), Constants.MESSAGE_ARTICLE_SAVED, "Save failed");
-        Assert.assertEquals(articlePage.getTitleTable(), Constants.TEXT_TITLE_FORM, "Failed, Article is not displayed");
+        Assert.assertTrue(articlePage.doesShowTitleTableArticle(Constants.TEXT_TITLE_FORM), "Failed, Article is not displayed");
 
         Log.info("Step 8: Click Article Checkbox");
-        articlePage.clickCheckbox(Constants.ZERO);
+        articlePage.clickCheckBox(Constants.TEXT_TITLE_FORM);
 
         Log.info("Step 9: Click Trash button");
         articlePage.clickTrashButton();
@@ -60,10 +60,9 @@ public class ArticleTest extends BaseTest {
         articlePage.clickSearchToolButton();
 
         Log.info("Step 11: Click Trashed in Status");
-        articlePage.clickListDropDown("- Select Status -");
-        articlePage.clickItemListDropDown("Trashed");
+        articlePage.clickListDropDownAndSelect("- Select Status -","Trashed");
 
-        Assert.assertEquals(articlePage.getTitleTable(), Constants.TEXT_TITLE_FORM, "Trash Failed");
+        Assert.assertTrue(articlePage.doesShowTitleTableArticle(Constants.TEXT_TITLE_FORM), "Trash Failed");
 
     }
 
@@ -75,12 +74,13 @@ public class ArticleTest extends BaseTest {
         Log.info("Step 2: Click New butotn");
         articlePage.clickNewButton();
 
+        String textArticleOne = DataHelper.getTextRandom();
+
         Log.info("Step 3: Fill data title form");
-        articlePage.fillDataTitleForm(Constants.TEXT_ARTICLE_ORDER_ONE_TITLE_FORM);
+        articlePage.fillDataTitleForm(textArticleOne);
 
         Log.info("Step 4: Select Sample Data-Articles in Category");
-        articlePage.clickListDropDown("Sample Data-Articles");
-        articlePage.clickItemListDropDown("Sample Data-Articles");
+        articlePage.clickListDropDownAndSelect("Sample Data-Articles","Sample Data-Articles");
 
         Log.info("Step 5: Fill data Article Text");
         articlePage.fillDataArticleText(Constants.ARTICLE_CONTENT);
@@ -89,7 +89,7 @@ public class ArticleTest extends BaseTest {
         articlePage.clickSaveAndCloseButton();
 
         Assert.assertEquals(articlePage.getTextAlertMessage(), Constants.MESSAGE_ARTICLE_SAVED, "Save failed");
-        Assert.assertEquals(articlePage.getTitleTable(), Constants.TEXT_ARTICLE_ORDER_ONE_TITLE_FORM, "Failed, Article is not displayed");
+        Assert.assertTrue(articlePage.doesShowTitleTableArticle(textArticleOne) , "Failed, Article is not displayed");
 
         Log.info("Step 7: Select Content > Article");
         articlePage.selectMenuTab(CommonPage.MenuTab.CONTENT, CommonPage.ListInMenuTab.ARTICLES);
@@ -97,12 +97,13 @@ public class ArticleTest extends BaseTest {
         Log.info("Step 8: Click New butotn");
         articlePage.clickNewButton();
 
+        String textArticleTwo = DataHelper.getTextRandom();
+
         Log.info("Step 9: Fill data title form");
-        articlePage.fillDataTitleForm(Constants.TEXT_ARTICLE_ORDER_TWO_TITLE_FORM);
+        articlePage.fillDataTitleForm(textArticleTwo);
 
         Log.info("Step 10: Select Sample Data-Articles in Category");
-        articlePage.clickListDropDown("Sample Data-Articles");
-        articlePage.clickItemListDropDown("Sample Data-Articles");
+        articlePage.clickListDropDownAndSelect("Sample Data-Articles","Sample Data-Articles");
 
         Log.info("Step 11: Fill data Article Text");
         articlePage.fillDataArticleText(Constants.ARTICLE_CONTENT);
@@ -111,15 +112,15 @@ public class ArticleTest extends BaseTest {
         articlePage.clickSaveAndCloseButton();
 
         Assert.assertEquals(articlePage.getTextAlertMessage(), Constants.MESSAGE_ARTICLE_SAVED, "Save failed");
-        Assert.assertEquals(articlePage.getTitleTable(), Constants.TEXT_ARTICLE_ORDER_TWO_TITLE_FORM, "Failed, Article is not displayed");
+        Assert.assertTrue(articlePage.doesShowTitleTableArticle(textArticleTwo) , "Failed, Article is not displayed");
 
         Log.info("Step 13: Click Article Checkbox");
-        articlePage.clickCheckbox(Constants.ONE);
+        articlePage.clickCheckBox(textArticleTwo);
 
         Log.info("Step 14: Click Order Column");
         articlePage.clickOrderColumn();
 
-        Assert.assertFalse(articlePage.checkEqualTitleTable(Constants.TEXT_ARTICLE_ORDER_ONE_TITLE_FORM), "Soft failed");
+        Assert.assertTrue(articlePage.compareTitleTable(textArticleTwo), "Soft failed");
     }
 
 }

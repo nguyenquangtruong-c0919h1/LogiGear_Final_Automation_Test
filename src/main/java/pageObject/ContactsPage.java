@@ -9,6 +9,11 @@ public class ContactsPage extends CommonPage {
 
     private By idTable = By.xpath("//table[@id='contactList']//a[contains(text(),'ID')]");
     private String titleTable = "//div[@class='pull-left break-word']/a[text()='%s']";
+    private String checkBoxContacts = "//td//a[contains(text(),'%s')]//..//..//../td/input[@type='checkbox']";
+
+    private WebElement getCheckBoxContacts(String text){
+        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(checkBoxContacts,text)));
+    }
 
     private WebElement getIdTable() {
         return BrowserHelper.getWebDriver().findElement(idTable);
@@ -22,6 +27,9 @@ public class ContactsPage extends CommonPage {
         return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(titleTable, text)));
     }
 
+    public void clickCheckBoxContacts(String text){
+        BrowserHelper.clickByJs(getCheckBoxContacts(text));
+    }
 
     /***
      * Function fill data for Form Name
@@ -35,19 +43,13 @@ public class ContactsPage extends CommonPage {
      * Function click Id Table Several Times
      * @param times
      */
-    public void clickIdTableSeveralTimes(int times) {
-        for (int i = 0; i < times; i++) {
-            getIdTable().click();
-        }
-    }
-
 
     /***\
      * Function get title table is displayed
      * @param text
      * @return
      */
-    public boolean getTitleTableIsDisplayed(String text) {
+    public boolean doesShowTitleTableContacts(String text) {
         return getTitleTable(text).isDisplayed();
     }
 
@@ -56,7 +58,7 @@ public class ContactsPage extends CommonPage {
      * @param textTitle
      * @return
      */
-     public boolean checkEqualTitleTable(String textTitle){
-         return getTitleTable(textTitle).isDisplayed();
-     }
+    public boolean checkEqualTitleTable(String textTitle) {
+        return getTitleTable(textTitle).isDisplayed();
+    }
 }
