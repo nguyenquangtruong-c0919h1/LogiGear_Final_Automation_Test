@@ -13,6 +13,7 @@ public class Constants {
     public static String PUBLISHED = "Published";
     public static String UNPUBLISHED = "Unpublished";
     public static String SAMPLE_DATA_ARTICLES = "Sample Data-Articles";
+    public static String CORPORATE_MARKETING_DIRECTOR = "Corporate Marketing Director";
     public static String SAMPLE_DATA_BANNERS = "Sample Data-Banners";
     public static String SELECT_STATUS = "- Select Status -";
     public static String TRASHED = "Trashed";

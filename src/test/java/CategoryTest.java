@@ -2,7 +2,7 @@ import helper.DataHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageObject.*;
+import pageobject.*;
 import utilities.Constants;
 import utilities.Log;
 

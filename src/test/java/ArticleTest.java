@@ -1,11 +1,10 @@
-import helper.BrowserHelper;
 import helper.DataHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageObject.ArticlePage;
-import pageObject.CommonPage;
-import pageObject.LoginPage;
+import pageobject.ArticlePage;
+import pageobject.CommonPage;
+import pageobject.LoginPage;
 import utilities.Constants;
 import utilities.Log;
 
@@ -37,7 +36,7 @@ public class ArticleTest extends BaseTest {
         articlePage.clickListDropDownAndSelect(Constants.PUBLISHED, Constants.PUBLISHED);
 
         Log.info("Step 5: Select Sample Data-Articles in Category");
-        articlePage.clickListDropDownAndSelect(Constants.SAMPLE_DATA_ARTICLES, Constants.SAMPLE_DATA_ARTICLES);
+        articlePage.clickListDropDownAndSelect(Constants.CORPORATE_MARKETING_DIRECTOR, Constants.SAMPLE_DATA_ARTICLES);
 
         Log.info("Step 6: Fill data Article Text");
         articlePage.fillDataArticleText(Constants.ARTICLE_CONTENT);
@@ -80,7 +79,7 @@ public class ArticleTest extends BaseTest {
         articlePage.fillDataTitleForm(textArticleOne);
 
         Log.info("Step 4: Select Sample Data-Articles in Category");
-        articlePage.clickListDropDownAndSelect(Constants.SAMPLE_DATA_ARTICLES, Constants.SAMPLE_DATA_ARTICLES);
+        articlePage.clickListDropDownAndSelect(Constants.CORPORATE_MARKETING_DIRECTOR, Constants.SAMPLE_DATA_ARTICLES);
 
         Log.info("Step 5: Fill data Article Text");
         articlePage.fillDataArticleText(Constants.ARTICLE_CONTENT);
@@ -103,7 +102,7 @@ public class ArticleTest extends BaseTest {
         articlePage.fillDataTitleForm(textArticleTwo);
 
         Log.info("Step 10: Select Sample Data-Articles in Category");
-        articlePage.clickListDropDownAndSelect(Constants.SAMPLE_DATA_ARTICLES, Constants.SAMPLE_DATA_ARTICLES);
+        articlePage.clickListDropDownAndSelect(Constants.CORPORATE_MARKETING_DIRECTOR, Constants.SAMPLE_DATA_ARTICLES);
 
         Log.info("Step 11: Fill data Article Text");
         articlePage.fillDataArticleText(Constants.ARTICLE_CONTENT);

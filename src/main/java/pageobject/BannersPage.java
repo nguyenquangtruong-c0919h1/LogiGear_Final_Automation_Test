@@ -1,4 +1,4 @@
-package pageObject;
+package pageobject;
 
 import helper.BrowserHelper;
 import org.openqa.selenium.By;
@@ -62,6 +62,7 @@ public class BannersPage extends CommonPage {
      */
     public String getAttributeFormTitle() {
         return getNameForm().getCssValue("color");
+
     }
 
     /***\

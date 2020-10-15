@@ -3,9 +3,9 @@ import helper.DataHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageObject.CommonPage;
-import pageObject.LoginPage;
-import pageObject.WebLinksPage;
+import pageobject.CommonPage;
+import pageobject.LoginPage;
+import pageobject.WebLinksPage;
 import utilities.Constants;
 import utilities.Log;
 

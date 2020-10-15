@@ -4,36 +4,36 @@
     <test name="ChromeTest">
         <parameter name="browser" value="Chrome"/>
         <classes>
-            <class name="ArticleTest"/>
-            <class name="ContactsTest"/>
+<!--            <class name="ArticleTest"/>-->
+<!--            <class name="ContactsTest"/>-->
             <class name="BannerTest"/>
-            <class name="ClientsTest"/>
-            <class name="CategoryTest"/>
-            <class name="WebLinksTest"/>
+<!--            <class name="ClientsTest"/>-->
+<!--            <class name="CategoryTest"/>-->
+<!--            <class name="WebLinksTest"/>-->
         </classes>
     </test>
-    <test name="FirefoxTest">
-        <parameter name="browser" value="FireFox"/>
-        <classes>
-            <class name="ArticleTest"/>
-            <class name="ContactsTest"/>
-            <class name="BannerTest"/>
-            <class name="ClientsTest"/>
-            <class name="CategoryTest"/>
-            <class name="WebLinksTest"/>
-        </classes>
-    </test>
+<!--    <test name="FirefoxTest">-->
+<!--        <parameter name="browser" value="FireFox"/>-->
+<!--        <classes>-->
+<!--            <class name="ArticleTest"/>-->
+<!--            <class name="ContactsTest"/>-->
+<!--            <class name="BannerTest"/>-->
+<!--            <class name="ClientsTest"/>-->
+<!--            <class name="CategoryTest"/>-->
+<!--            <class name="WebLinksTest"/>-->
+<!--        </classes>-->
+<!--</test>-->
 
-    <test name="EdgeTest">
-        <parameter name="browser" value="Edge"/>
-        <classes>
-            <class name="ArticleTest"/>
-            <class name="ContactsTest"/>
-            <class name="BannerTest"/>
-            <class name="ClientsTest"/>
-            <class name="CategoryTest"/>
-            <class name="WebLinksTest"/>
-        </classes>
-    </test>
+<!--    <test name="EdgeTest">-->
+<!--        <parameter name="browser" value="Edge"/>-->
+<!--        <classes>-->
+<!--            <class name="ArticleTest"/>-->
+<!--            <class name="ContactsTest"/>-->
+<!--            <class name="BannerTest"/>-->
+<!--            <class name="ClientsTest"/>-->
+<!--            <class name="CategoryTest"/>-->
+<!--            <class name="WebLinksTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
 </suite>

@@ -1,6 +1,5 @@
 import helper.BrowserHelper;
 import org.testng.annotations.*;
-import pageObject.LoginPage;
 import utilities.Constants;
 
 public class BaseTest {

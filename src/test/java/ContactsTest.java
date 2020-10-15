@@ -1,11 +1,10 @@
-import helper.BrowserHelper;
 import helper.DataHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageObject.CommonPage;
-import pageObject.ContactsPage;
-import pageObject.LoginPage;
+import pageobject.CommonPage;
+import pageobject.ContactsPage;
+import pageobject.LoginPage;
 import utilities.Constants;
 import utilities.Log;
 

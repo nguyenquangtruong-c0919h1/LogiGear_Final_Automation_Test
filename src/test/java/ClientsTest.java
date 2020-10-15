@@ -3,10 +3,10 @@ import helper.DataHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageObject.BannersPage;
-import pageObject.ClientsPage;
-import pageObject.CommonPage;
-import pageObject.LoginPage;
+import pageobject.BannersPage;
+import pageobject.ClientsPage;
+import pageobject.CommonPage;
+import pageobject.LoginPage;
 import utilities.Constants;
 import utilities.Log;
 
