@@ -3,6 +3,7 @@ package pageobject;
 import helper.BrowserHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.Color;
 
 public class BannersPage extends CommonPage {
     private By bannerDetail = By.xpath("//li//a[text()='Banner Details']");
@@ -61,9 +62,9 @@ public class BannersPage extends CommonPage {
      * @return
      */
     public String getAttributeFormTitle() {
-        return getNameForm().getCssValue("color");
-
-    }
+        String color= getNameForm().getCssValue("color");
+        return BrowserHelper.convertRgbToHex(color);
+  }
 
     /***\
      *  Function does show title table

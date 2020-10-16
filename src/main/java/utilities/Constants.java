@@ -13,7 +13,8 @@ public class Constants {
     public static String PUBLISHED = "Published";
     public static String UNPUBLISHED = "Unpublished";
     public static String SAMPLE_DATA_ARTICLES = "Sample Data-Articles";
-    public static String CORPORATE_MARKETING_DIRECTOR = "Corporate Marketing Director";
+    public static String SAMPLE_DATA_CONTACT = "Sample Data-Contact";
+    public static String TRUONG_CATEGORY = "Truong_Catagory";
     public static String SAMPLE_DATA_BANNERS = "Sample Data-Banners";
     public static String SELECT_STATUS = "- Select Status -";
     public static String TRASHED = "Trashed";
@@ -42,9 +43,10 @@ public class Constants {
     /***
      * Color
      */
-    public static String RED_COLOR = "rgba(85, 85, 85, 1)";
+    public static String RED_COLOR = "#555555";
     /***
      * save browser
      */
     public static String BROWSER = "";
+    public static int FIVE_HUNDRED= 500;
 }

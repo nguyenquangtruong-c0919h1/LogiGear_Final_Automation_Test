@@ -7,9 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
-
-import javax.swing.*;
+import org.openqa.selenium.support.Color;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.Constants;
 
 public class BrowserHelper {
     static WebDriver driver;
@@ -65,15 +65,11 @@ public class BrowserHelper {
     }
 
     /***
-     * Get title Browser when having 2 browser
-     * @param title
+     * function get driver wait
      * @return
      */
-    public static boolean isShowTitleHelpBrowser(String title) {
-        for (String handle : BrowserHelper.getWebDriver().getWindowHandles()) {
-            BrowserHelper.getWebDriver().switchTo().window(handle);
-        }
-        return BrowserHelper.getWebDriver().getTitle().equals(title);
+    public static WebDriverWait getDriverWait() {
+        return new WebDriverWait(driver, Constants.FIVE_HUNDRED);
     }
 
     /***
@@ -84,5 +80,15 @@ public class BrowserHelper {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", element);
     }
+
+    /***
+     * Function convert Rgb to hex
+     * @param color
+     * @return
+     */
+    public static String convertRgbToHex(String color) {
+        return Color.fromString(color).asHex();
+    }
+
 
 }

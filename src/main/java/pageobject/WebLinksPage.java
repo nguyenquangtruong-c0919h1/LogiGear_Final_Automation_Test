@@ -3,11 +3,12 @@ package pageobject;
 import helper.BrowserHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class WebLinksPage extends CommonPage {
     private By formTitle = By.id("jform_title");
     private By urlName = By.cssSelector("input[name='jform[url]']");
-    private String changeStatusOnTable = "//a[contains(text(),'%s')]//..//..//../td//span[@class='icon-publish']";
+    private String changeStatusPublishOnTable = "//a[contains(text(),'%s')]//..//..//../td//span[@class='icon-publish']";
     private String titleFormWebLink = "//div[@id='j-main-container']//a[contains(text(),'%s')]";
 
     private WebElement getFormTitle() {
@@ -18,8 +19,8 @@ public class WebLinksPage extends CommonPage {
         return BrowserHelper.getWebDriver().findElement(urlName);
     }
 
-    private WebElement getChangeStatusOnTable(String text) {
-        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(changeStatusOnTable, text)));
+    private WebElement getChangeStatusPublishOnTable(String text) {
+        return BrowserHelper.getWebDriver().findElement(By.xpath(String.format(changeStatusPublishOnTable, text)));
     }
 
     private WebElement getTitleFormWebLink(String text) {
@@ -40,8 +41,8 @@ public class WebLinksPage extends CommonPage {
      * function change status on table
      * @param text
      */
-    public void clickChangeStatusOnTable(String text) {
-        BrowserHelper.clickByJs(getChangeStatusOnTable(text));
+    public void clickChangeStatusPublishOnTable(String text) {
+        BrowserHelper.clickByJs(getChangeStatusPublishOnTable(text));
     }
 
     /***
@@ -52,4 +53,5 @@ public class WebLinksPage extends CommonPage {
     public boolean doesShowTitleFormWebLink(String text) {
         return getTitleFormWebLink(text).isDisplayed();
     }
-}
+
+    }

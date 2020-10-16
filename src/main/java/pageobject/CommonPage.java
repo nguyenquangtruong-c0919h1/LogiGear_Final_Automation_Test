@@ -4,6 +4,7 @@ import helper.BrowserHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import utilities.Log;
 
 public class CommonPage {
@@ -12,6 +13,7 @@ public class CommonPage {
     private By publishButton = By.id("toolbar-publish");
     private By trashButton = By.id("toolbar-trash");
     private By checkInButton = By.id("toolbar-checkin");
+    private By titleHelp = By.cssSelector("body h1");
     //List element Search
     private By searchInput = By.id("filter_search");
     private By searchButton = By.cssSelector(".btn-wrapper.input-append>button[type=submit]");
@@ -24,6 +26,7 @@ public class CommonPage {
     private By alertMessage = By.cssSelector("div.alert.alert-success>div.alert-message");
     private By saveAndCloseButton = By.cssSelector("#toolbar-save button");
     private By newButton = By.cssSelector("#toolbar-new>button");
+    private By categoryButton = By.xpath("//select[@id='jform_catid']//..//b");
     private String listDropDown = "//span[contains(text(),'%s')]";
     private String itemListDropDown = "//li[contains(text(),'%s')]";
     private String checkBox = "//a[contains(text(),'')]//..//..//../td/input[@type='checkbox']";
@@ -98,6 +101,9 @@ public class CommonPage {
     }
 
     //List get element other
+    private WebElement getCategoryButton(){
+        return BrowserHelper.getWebDriver().findElement(categoryButton);
+    }
     private WebElement getAlertMessage() {
         return BrowserHelper.getWebDriver().findElement(alertMessage);
     }
@@ -233,7 +239,6 @@ public class CommonPage {
                 case WEB_LINKS:
                     getWebLinksList().click();
                     break;
-
             }
         } catch (NoSuchElementException e) {
             Log.error("Can not find element in List Contact Tab " + e);
@@ -278,7 +283,10 @@ public class CommonPage {
     public void clickListDropDownAndSelect(String listDropDown, String itemListDropDown) {
         getListDropDown(listDropDown).click();
         getItemListDropDown(itemListDropDown).click();
-
+    }
+    public void clickListDropDownAndSelectCategory(String itemListDropDown){
+        getCategoryButton().click();
+        getItemListDropDown(itemListDropDown).click();
     }
 
     /***
@@ -363,4 +371,19 @@ public class CommonPage {
         getSearchButton().click();
     }
 
+    public void waitToElementVisibilityToBodyHelper(){
+        BrowserHelper.getDriverWait().until(ExpectedConditions.visibilityOfElementLocated(titleHelp));
+    }
+    /***
+     * Get title Browser when having 2 browser
+     * @param title
+     * @return
+     */
+    public boolean isShowTitleHelp(String title) {
+        for (String handle : BrowserHelper.getWebDriver().getWindowHandles()) {
+            BrowserHelper.getWebDriver().switchTo().window(handle);
+        }
+        waitToElementVisibilityToBodyHelper();
+        return BrowserHelper.getWebDriver().getTitle().equals(title);
+    }
 }

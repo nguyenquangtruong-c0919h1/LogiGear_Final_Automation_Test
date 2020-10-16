@@ -1,4 +1,3 @@
-import helper.BrowserHelper;
 import helper.DataHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -57,11 +56,11 @@ public class WebLinksTest extends BaseTest {
         Log.info("Step 2: Click ToolBar Help");
         webLinksPage.clickToolbarHelp();
 
-        Assert.assertTrue(BrowserHelper.isShowTitleHelpBrowser(Constants.TEXT_TITLE_HELP), "Navigate Failed, can not get Help Screen");
+        Assert.assertTrue(webLinksPage.isShowTitleHelp(Constants.TEXT_TITLE_HELP), "Navigate Failed, can not get Help Screen");
 
     }
     @Test(description = "Verify user can change the status of weblinks using the Status column")
-    public void tc_Joomla_Weblinks_015(){
+    public void tc_Joomla_WebLinks_015(){
         Log.infoTestCase("TC_JOOMLA_WEBLINKS_015: Verify user can change the status of weblinks using the Status column");
 
         Log.info("Step 1: Select Component -> WebLinks");
@@ -90,9 +89,9 @@ public class WebLinksTest extends BaseTest {
         Assert.assertTrue(webLinksPage.doesShowTitleFormWebLink(titleName), "Failed, Contact is not displayed");
 
         Log.info("Step 7: Click change status on table");
-        webLinksPage.clickChangeStatusOnTable(titleName);
+        webLinksPage.clickChangeStatusPublishOnTable(titleName);
 
-        Assert.assertEquals(webLinksPage.getTextAlertMessage(), Constants.MESSAGE_WEB_LINK_UN_PUBLISH, "Failed, Cannot change status");
+        Assert.assertEquals(webLinksPage.getTextAlertMessage(), Constants.MESSAGE_WEB_LINK_UN_PUBLISH,"Failed, Cannot change status");
 
 
     }

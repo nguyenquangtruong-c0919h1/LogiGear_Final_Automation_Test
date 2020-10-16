@@ -1,3 +1,4 @@
+import helper.BrowserHelper;
 import helper.DataHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -22,21 +23,21 @@ public class BannerTest extends BaseTest {
         loginPage.login(Constants.USER_NAME_VALID, Constants.PASSWORD_VALID);
     }
 
-//    @Test(description = "Verify that user can browse 'Banner help' page")
-//    public void tc_Joomla_Banner_Banner_007() {
-//        Log.infoTestCase("TO_JOOMLA_BANNERS_BANNERS_007: Verify that user can browse 'Banner help' page");
-//
-//        Log.info("Step 1: Select Components > Banner");
-//        bannersPage.selectMenuTab(CommonPage.MenuTab.COMPONENTS, CommonPage.ListInMenuTab.BANNER);
-//
-//        Log.info("Step 2: CLick Toolbar Help");
-//        bannersPage.clickToolbarHelp();
-//
-//        Assert.assertTrue(BrowserHelper.isShowTitleHelpBrowser(Constants.TEXT_TITLE_HELP), "Navigate Failed, can not get Help Screen");
-//    }
+    @Test(description = "Verify that user can browse 'Banner help' page")
+    public void tc_Joomla_Banner_Banner_007() {
+        Log.infoTestCase("TO_JOOMLA_BANNERS_BANNERS_007: Verify that user can browse 'Banner help' page");
+
+        Log.info("Step 1: Select Components > Banner");
+        bannersPage.selectMenuTab(CommonPage.MenuTab.COMPONENTS, CommonPage.ListInMenuTab.BANNER);
+
+        Log.info("Step 2: CLick Toolbar Help");
+        bannersPage.clickToolbarHelp();
+
+        Assert.assertTrue(bannersPage.isShowTitleHelp(Constants.TEXT_TITLE_HELP), "Navigate Failed, can not get Help Screen");
+    }
 
     @Test(description = "Verify that user cannot create a new banner without entering the name of the banner")
-    public void TC_Joomla_Banners_Banners_014() {
+    public void tc_Joomla_Banners_Banners_014() {
         Log.infoTestCase("TO_JOOMLA_BANNERS_BANNERS_014: Verify that user cannot create a new banner without entering the name of the banner");
 
         Log.info("Step 1: Select Components > Banner > Clients");

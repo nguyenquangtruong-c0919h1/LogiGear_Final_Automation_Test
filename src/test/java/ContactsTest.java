@@ -86,7 +86,7 @@ public class ContactsTest extends BaseTest {
         contactsPage.fillDataFormName(textForTitleContact);
 
         Log.info("Step 4: Select Sample Data-Articles in Category");
-        contactsPage.clickListDropDownAndSelect("Sample Data-Contact", "Sample Data-Contact");
+        contactsPage.clickListDropDownAndSelect(Constants.SAMPLE_DATA_CONTACT, Constants.SAMPLE_DATA_CONTACT);
 
         Log.info("Step 5: Click Save and Close button");
         contactsPage.clickSaveAndCloseButton();
